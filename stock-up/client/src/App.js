@@ -1,35 +1,27 @@
-import React, {useState} from 'react';
-import './App.css';
-import LoginForm from './components/LoginFrom'
+import React, { useState } from "react";
+import { AppContext } from "./AppContext.js";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+//import Register from "./components/MainPage/Sections/Register/Register.js";
+import "./App.css";
+//import Signin from "./components/MainPage/Sections/Signin/Signin.js";
+//import MainPage from "./components/MainPage/MainPage.js";
+import PrivateRoute from "./components/PrivateRoute.js";
+import MainPage from "./components/IndexPages/IndexPage.js";
 
 function App() {
-  const adminUser = {
-    email: "admin@admin.com",
-    password:"123Qwe"
-  }
-
-  const [user, setUser] = useState({userName: "", password: ""});
-  const[error, setError] = useState("");
-
-  const Login = details => {
-    console.log(details);
-  }
-
-  const Logout = () => {
-    console.log("Logout");
-  }
+  const [authenticated, setAuthenticated] = useState(false);
   return (
-    <div className="App">
-      {(user.email != "") ? (
-        <div className = "welcome">
-          <h2> Welcome, <span>{user.userName}</span></h2>
-          <button>Logout</button>
-          </div>
-      ):(
-        <LoginForm Login={Login} error={error}/>
-      )}
-    </div>
+    <AppContext.Provider value={[authenticated, setAuthenticated]}>
+      <BrowserRouter>
+        <Switch>
+          
+          <Route path="/" exact component={MainPage} />
+          </Switch>
+      </BrowserRouter>
+    </AppContext.Provider>
   );
+
 }
 
 export default App;
