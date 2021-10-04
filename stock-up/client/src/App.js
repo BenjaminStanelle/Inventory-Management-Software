@@ -6,8 +6,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 //import Signin from "./components/MainPage/Sections/Signin/Signin.js";
 //import MainPage from "./components/MainPage/MainPage.js";
-import PrivateRoute from "./components/PrivateRoute.js";
+//import PrivateRoute from "./components/PrivateRoute.js";
 import MainPage from "./components/IndexPages/IndexPage.js";
+import Register from "./components/IndexPages/MainViews/Register/Register.js";
+import SignIn from "./components/IndexPages/MainViews/Signin/Signin.js";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -16,7 +18,16 @@ function App() {
       <BrowserRouter>
         <Switch>
           
-          <Route path="/" exact component={MainPage} />
+          <Route exact path="/">
+            <MainPage/>
+          </Route>
+          <Route path="/register">
+            <Register/>
+          </Route>
+          <Route path="/signin">
+            <SignIn/>
+          </Route>
+          
           </Switch>
       </BrowserRouter>
     </AppContext.Provider>

@@ -22,22 +22,22 @@ const Navbar = () => {
         </div>
         <ul className={isOpen ? "nav-links show-nav" : "nav-links"}>
           <li>
-            <NavHashLink smooth to="#home">
+            <NavHashLink smooth to="home">
               Home
             </NavHashLink>
           </li>
           <li>
-            <NavHashLink smooth to="#menu">
+            <NavHashLink smooth to="menu">
               Menu
             </NavHashLink>
           </li>
           <li>
-            <NavHashLink smooth to="#register">
+            <NavHashLink smooth to="register">
               Register
             </NavHashLink>
           </li>
           <li>
-            <NavHashLink smooth to="#signin">
+            <NavHashLink smooth to="signin">
               SignIn
             </NavHashLink>
           </li>
