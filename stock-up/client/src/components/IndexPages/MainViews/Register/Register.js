@@ -51,6 +51,7 @@ function Register() {
         }
     }
 
+
     return (
         <div className="register-overlay" id="register">
             <div className="register-box" id="register-box">

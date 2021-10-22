@@ -10,7 +10,7 @@ const MainPage = () => {
   return (
     <div>
       <Navbar />
-      <Home />
+
     </div>
   );
 };

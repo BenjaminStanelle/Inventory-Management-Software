@@ -10,6 +10,11 @@ import "./App.css";
 import MainPage from "./components/IndexPages/IndexPage.js";
 import Register from "./components/IndexPages/MainViews/Register/Register.js";
 import SignIn from "./components/IndexPages/MainViews/Signin/Signin.js";
+import Home from "./components/IndexPages/MainViews/Home/Home.js";
+import Dashboard from "./components/IndexPages/MainViews/Dashboard/Dashboard.js";
+import Reorder from "./components/IndexPages/MainViews/Dashboard/Re-order/Reorder.js";
+import Assistance from "./components/IndexPages/MainViews/Dashboard/Assistance/Assistance.js";
+import Store from "./components/IndexPages/MainViews/Dashboard/Store/Store.js";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -26,6 +31,21 @@ function App() {
           </Route>
           <Route path="/signin">
             <SignIn/>
+          </Route>
+          <Route path="/home">
+            <Home/>
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard/>
+          </Route>
+          <Route path="/reorder">
+            <Reorder/>
+          </Route>
+          <Route path="/help">
+            <Assistance/>
+          </Route>
+          <Route path="/store">
+            <Store/>
           </Route>
           
           </Switch>

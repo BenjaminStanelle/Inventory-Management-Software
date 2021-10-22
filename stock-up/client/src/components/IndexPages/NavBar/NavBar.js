@@ -13,7 +13,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-center">
         <div className="nav-header">
-          <NavHashLink smooth to="#home">
+          <NavHashLink smooth to="home">
             
           </NavHashLink>
           <button type="button" className="nav-btn" onClick={handleToggle}>
@@ -40,6 +40,11 @@ const Navbar = () => {
             <NavHashLink smooth to="signin">
               SignIn
             </NavHashLink>
+          </li>
+          <li>
+            <NavHashLink smooth to="dashboard">
+              Dashboard
+            </NavHashLink>   
           </li>
         </ul>
       </div>
