@@ -15,6 +15,7 @@ import Dashboard from "./components/IndexPages/MainViews/Dashboard/Dashboard.js"
 import Reorder from "./components/IndexPages/MainViews/Dashboard/Re-order/Reorder.js";
 import Assistance from "./components/IndexPages/MainViews/Dashboard/Assistance/Assistance.js";
 import Store from "./components/IndexPages/MainViews/Dashboard/Store/Store.js";
+import Account from "./components/IndexPages/MainViews/Account/Account.js";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/store">
             <Store/>
+          </Route>
+          <Route path="/account">
+            <Account/>
           </Route>
           
           </Switch>
