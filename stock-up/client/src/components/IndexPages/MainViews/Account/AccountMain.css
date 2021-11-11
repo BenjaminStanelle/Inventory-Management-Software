@@ -1,0 +1,29 @@
+
+
+h2{
+    margin: 0;
+    padding:0 0 30px;
+    text-align:center;
+    font-size:30px;
+    color:#fff
+}
+
+h3{
+    margin: 0;
+    padding:50px;
+    text-align:center;
+    font-size:22px;
+    color:#ddd
+}
+
+.info-account-left {
+    color: #aaa;
+    font-size: 18px;
+    padding:0 0 18px;
+}
+
+.info-account-right {
+    color: #fff;
+    font-size: 18px;
+    padding:0 0 18px;
+}

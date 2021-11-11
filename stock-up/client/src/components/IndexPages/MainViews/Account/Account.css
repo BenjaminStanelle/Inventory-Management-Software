@@ -1,19 +1,19 @@
 
 /*Login*/
-.login-box{
+.account-overview{
     width: 400px;
     height: 500px;
     background:#000;
     color:#fff;
-    top: 85.5%;
-    left: 50%;
+    top: 30%;
+    left: 30%;
     position:absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-20%, -20%);
     box-sizing: border-box;
     padding: 70px 30px;
      }
     
-     .login-box .person {
+     .account-overview .person {
        width: 50px;
        height: 50px;
        background:#fb2525; 
@@ -23,7 +23,7 @@
        margin-left: 35%;
        margin-right: 30%;
      }
-     h1{
+     h2{
        margin: 0;
        padding:0 0 20px;
        text-align:center;
@@ -36,35 +36,4 @@
        font-weight: bold;
        color:#fff
      }
-     .login-box input{
-       width: 100%;
-       margin-bottom: 20px;
-       padding: 2px;
-     }
-     .login-box input[type="email"], input[type="password"]
-     {
-       border:none;
-       border-bottom: 2px solid #fff;
-       background: transparent;
-       outline:none;
-       height: 40px;
-       color:#fff;
-       font-size: 16px;
-  
-     }
-     .login-box input[type="submit"]{
-       border:none;
-       outline:none;
-       background: #fb2525;
-       color: #fff;
-       font-size:18px;
-       border-radius: 40px;
-     }
-  
-     .login-box input[type="submit"]:hover{
-       cursor:pointer;
-       background: #ffc107;
-       color: #000;
-     }
-   
   
