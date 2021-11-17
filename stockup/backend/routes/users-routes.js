@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get('/', usersController.getUsers);
 
+router.get('/info/:uid', usersController.getUserInfo);
+
 router.post(
   '/signup',
   fileUpload.single('image'),

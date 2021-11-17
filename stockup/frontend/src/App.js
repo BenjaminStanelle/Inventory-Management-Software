@@ -10,6 +10,7 @@ import Users from './user/pages/Users';
 import NewPlace from './places/pages/NewPlace';
 import UserPlaces from './places/pages/UserPlaces';
 import UpdatePlace from './places/pages/UpdatePlace';
+import AccountInfo from './user/pages/view/AccountInfo';
 import Auth from './user/pages/Auth';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import { AuthContext } from './shared/context/auth-context';
@@ -25,6 +26,9 @@ const App = () => {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/account/:userId">
+          <AccountInfo />
         </Route>
         <Route path="/:userId/places" exact>
           <UserPlaces />
@@ -43,6 +47,9 @@ const App = () => {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/account/:userId">
+          <AccountInfo />
         </Route>
         <Route path="/:userId/places" exact>
           <UserPlaces />
