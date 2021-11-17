@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Avatar from '../../../shared/components/UIElements/Avatar';
 import Card from '../../../shared/components/UIElements/Card';
 
+import './AccountDisplay.css';
+
 const AccountDisplay = props => {
 
     const userInfo = props.userInfo;
@@ -21,6 +23,12 @@ const AccountDisplay = props => {
                 <h2>{userInfo.pnumber}</h2>
               </div>
             </Link>
+          </Card>
+          <Card className="user-item__none">
+            <div className="user-item__image">
+              <Avatar image={`http://localhost:5000/uploads/images/none.png`} alt={'None'} />
+            </div>
+            <h2>No Subscriptions Found.</h2>
           </Card>
         </li>
       );

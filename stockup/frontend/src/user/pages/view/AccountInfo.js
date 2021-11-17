@@ -5,7 +5,7 @@ import ErrorModal from '../../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../../shared/hooks/http-hook';
 import AccountDisplay from './AccountDisplay';
-import '../Auth.css';
+import './AccountInfo.css';
 
 const Auth = () => {
   const [userInfo, setUserInfo] = useState();
