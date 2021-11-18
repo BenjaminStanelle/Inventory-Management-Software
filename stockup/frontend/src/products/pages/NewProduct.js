@@ -93,7 +93,7 @@ const NewProduct = () => {
           errorText="Please provide an image."
         />
         <Button type="submit" disabled={!formState.isValid}>
-          ADD PLACE
+          ADD PRODUCT
         </Button>
       </form>
     </React.Fragment>
