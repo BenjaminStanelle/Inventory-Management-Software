@@ -55,7 +55,7 @@ const Input = props => {
       <input
         id={props.id}
         type={props.type}
-        placeholder={props.placeholder}
+        productholder={props.productholder}
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}

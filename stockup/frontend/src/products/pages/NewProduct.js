@@ -13,9 +13,9 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-import './PlaceForm.css';
+import './ProductForm.css';
 
-const NewPlace = () => {
+const NewProduct = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
@@ -42,7 +42,7 @@ const NewPlace = () => {
 
   const history = useHistory();
 
-  const placeSubmitHandler = async event => {
+  const productSubmitHandler = async event => {
     event.preventDefault();
     try {
       const formData = new FormData();
@@ -50,7 +50,7 @@ const NewPlace = () => {
       formData.append('description', formState.inputs.description.value);
       formData.append('address', formState.inputs.address.value);
       formData.append('image', formState.inputs.image.value);
-      await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
+      await sendRequest('http://localhost:5000/api/products', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
       history.push('/');
@@ -60,7 +60,7 @@ const NewPlace = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <form className="place-form" onSubmit={placeSubmitHandler}>
+      <form className="product-form" onSubmit={productSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
         <Input
           id="title"
@@ -100,4 +100,4 @@ const NewPlace = () => {
   );
 };
 
-export default NewPlace;
+export default NewProduct;

@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import PlaceList from '../components/PlaceList';
+import ProductList from '../components/ProductList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
-const UserPlaces = () => {
-  const [loadedPlaces, setLoadedPlaces] = useState();
+const UserProducts = () => {
+  const [loadedProducts, setLoadedProducts] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const userId = useParams().userId;
 
   useEffect(() => {
-    const fetchPlaces = async () => {
+    const fetchProducts = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/places/user/${userId}`
+          `http://localhost:5000/api/products/user/${userId}`
         );
-        setLoadedPlaces(responseData.places);
+        setLoadedProducts(responseData.products);
       } catch (err) {}
     };
-    fetchPlaces();
+    fetchProducts();
   }, [sendRequest, userId]);
 
-  const placeDeletedHandler = deletedPlaceId => {
-    setLoadedPlaces(prevPlaces =>
-      prevPlaces.filter(place => place.id !== deletedPlaceId)
+  const productDeletedHandler = deletedProductId => {
+    setLoadedProducts(prevProducts =>
+      prevProducts.filter(product => product.id !== deletedProductId)
     );
   };
 
@@ -38,11 +38,11 @@ const UserPlaces = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedPlaces && (
-        <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />
+      {!isLoading && loadedProducts && (
+        <ProductList items={loadedProducts} onDeleteProduct={productDeletedHandler} />
       )}
     </React.Fragment>
   );
 };
 
-export default UserPlaces;
+export default UserProducts;

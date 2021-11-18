@@ -18,7 +18,7 @@ Navigate to client folder and type in terminal:npm start
 Connect to MongoDB:
 
 On MongoDB compass application
-replace "ben-stanelle" with your name.
+reproduct "ben-stanelle" with your name.
 ferree-randall
 dat-nguyen
 tu-mai
