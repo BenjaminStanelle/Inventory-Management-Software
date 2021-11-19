@@ -5,9 +5,9 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
 <<<<<<< HEAD
   name: { type: String, required: true },
-  length: { type: int, required: true },
-  width: { type: int, required: true },
-  height: { type: int, required: true },
+  length: { type: String, required: true },
+  width: { type: String, required: true },
+  height: { type: String, required: true },
   description: { type: String, required: true },
   store_location: { type: String, required: true },
 //   location: {
