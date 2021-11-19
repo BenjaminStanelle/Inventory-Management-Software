@@ -9,6 +9,7 @@ const NavLinks = props => {
 
   return (
     <ul className="nav-links">
+     
       <li>
         <NavLink to="/" exact>
           ALL USERS
@@ -39,6 +40,7 @@ const NavLinks = props => {
           <button onClick={auth.logout}>LOGOUT</button>
         </li>
       )}
+      
     </ul>
   );
 };

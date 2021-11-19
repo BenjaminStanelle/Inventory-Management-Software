@@ -16,6 +16,8 @@ import MainNavigation from './shared/components/Navigation/MainNavigation';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 
+//import NewProduct from './products/pages/NewProduct';
+
 const App = () => {
   const { token, login, logout, userId } = useAuth();
 
