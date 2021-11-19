@@ -15,13 +15,13 @@ router.use(checkAuth);
 
 router.post(
   '/',
-  fileUpload.single('image'),
+  //fileUpload.single('image'),
   [
-    check('title')
+    check('name')
       .not()
       .isEmpty(),
     check('description').isLength({ min: 5 }),
-    check('address')
+    check('storage_location')
       .not()
       .isEmpty()
   ],
@@ -31,7 +31,7 @@ router.post(
 router.patch(
   '/:pid',
   [
-    check('title')
+    check('name')
       .not()
       .isEmpty(),
     check('description').isLength({ min: 5 })
