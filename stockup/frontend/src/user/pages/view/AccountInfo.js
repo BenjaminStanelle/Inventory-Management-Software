@@ -18,9 +18,9 @@ const Auth = () => {
     const fetchUserInfo = async () => {
       try {
         const responseData = await sendRequest(
-          'http://localhost:5000/api/users/info/' + userId,
+          `http://localhost:5000/api/users/info/${userId}`,
         );
-
+        
         setUserInfo(responseData.user);
       } catch (err) {}
     

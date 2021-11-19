@@ -8,6 +8,7 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import {
   VALIDATOR_EMAIL,
+  VALIDATOR_MIN,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE
 } from '../../shared/util/validators';
@@ -53,6 +54,10 @@ const Auth = () => {
             value: '',
             isValid: false
           },
+          pnumber: {
+            value: '',
+            isValid: false
+          },
           image: {
             value: null,
             isValid: false
@@ -87,6 +92,7 @@ const Auth = () => {
         const formData = new FormData();
         formData.append('email', formState.inputs.email.value);
         formData.append('name', formState.inputs.name.value);
+        formData.append('pnumber', formState.inputs.pnumber.value);
         formData.append('password', formState.inputs.password.value);
         formData.append('image', formState.inputs.image.value);
         const responseData = await sendRequest(
@@ -125,6 +131,17 @@ const Auth = () => {
               id="image"
               onInput={inputHandler}
               errorText="Please provide an image."
+            />
+          )}
+          {!isLoginMode && (
+            <Input
+              element="input"
+              id="pnumber"
+              type="number"
+              label="Your Phone Number"
+              validators={[VALIDATOR_MINLENGTH(10)]}
+              errorText="Please enter a phone number."
+              onInput={inputHandler}
             />
           )}
           <Input
