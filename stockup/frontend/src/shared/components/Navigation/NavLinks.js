@@ -9,6 +9,7 @@ const NavLinks = props => {
 
   return (
     <ul className="nav-links">
+     
       <li>
         <NavLink to="/" exact>
           ALL USERS
@@ -24,6 +25,11 @@ const NavLinks = props => {
           <NavLink to="/places/new">ADD PLACE</NavLink>
         </li>
       )}
+      {auth.isLoggedIn && (
+        <li>
+          <NavLink to="/products/new">ADD PRODUCTS</NavLink>
+        </li>
+      )}
       {!auth.isLoggedIn && (
         <li>
           <NavLink to="/auth">AUTHENTICATE</NavLink>
@@ -34,6 +40,7 @@ const NavLinks = props => {
           <button onClick={auth.logout}>LOGOUT</button>
         </li>
       )}
+      
     </ul>
   );
 };
