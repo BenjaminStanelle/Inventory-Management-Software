@@ -5,7 +5,11 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+<<<<<<< HEAD
 
+=======
+import ImageUpload from '../../shared/components/FormElements/ImageUpload';
+>>>>>>> ee84e8444bea950a3ac82d09c684f9f8d67aa4e1
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH
@@ -13,14 +17,22 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
+<<<<<<< HEAD
 
+=======
+import './ProductForm.css';
+>>>>>>> ee84e8444bea950a3ac82d09c684f9f8d67aa4e1
 
 const NewProduct = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
+<<<<<<< HEAD
       name: {
+=======
+      title: {
+>>>>>>> ee84e8444bea950a3ac82d09c684f9f8d67aa4e1
         value: '',
         isValid: false
       },
@@ -28,18 +40,30 @@ const NewProduct = () => {
         value: '',
         isValid: false
       },
+<<<<<<< HEAD
       storage_location: {
         value: '',
         isValid: false
       },
 
 
+=======
+      address: {
+        value: '',
+        isValid: false
+      },
+      image: {
+        value: null,
+        isValid: false
+      }
+>>>>>>> ee84e8444bea950a3ac82d09c684f9f8d67aa4e1
     },
     false
   );
 
   const history = useHistory();
 
+<<<<<<< HEAD
   const placeSubmitHandler = async event => {
     event.preventDefault();
     try {
@@ -53,6 +77,17 @@ const NewProduct = () => {
 
   
       await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
+=======
+  const productSubmitHandler = async event => {
+    event.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append('title', formState.inputs.title.value);
+      formData.append('description', formState.inputs.description.value);
+      formData.append('address', formState.inputs.address.value);
+      formData.append('image', formState.inputs.image.value);
+      await sendRequest('http://localhost:5000/api/products', 'POST', formData, {
+>>>>>>> ee84e8444bea950a3ac82d09c684f9f8d67aa4e1
         Authorization: 'Bearer ' + auth.token
       });
       history.push('/');
@@ -62,6 +97,7 @@ const NewProduct = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
+<<<<<<< HEAD
       <form className="place-form" onSubmit={placeSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
         <Input
@@ -98,6 +134,17 @@ const NewProduct = () => {
           label="Height"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid height."
+=======
+      <form className="product-form" onSubmit={productSubmitHandler}>
+        {isLoading && <LoadingSpinner asOverlay />}
+        <Input
+          id="title"
+          element="input"
+          type="text"
+          label="Title"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid title."
+>>>>>>> ee84e8444bea950a3ac82d09c684f9f8d67aa4e1
           onInput={inputHandler}
         />
         <Input
@@ -109,6 +156,7 @@ const NewProduct = () => {
           onInput={inputHandler}
         />
         <Input
+<<<<<<< HEAD
           id="storage_location"
           element="input"
           label="Storage location"
@@ -119,6 +167,22 @@ const NewProduct = () => {
 
         <Button type="submit" disabled={!formState.isValid}>
           ADD PLACE
+=======
+          id="address"
+          element="input"
+          label="Address"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid address."
+          onInput={inputHandler}
+        />
+        <ImageUpload
+          id="image"
+          onInput={inputHandler}
+          errorText="Please provide an image."
+        />
+        <Button type="submit" disabled={!formState.isValid}>
+          ADD PRODUCT
+>>>>>>> ee84e8444bea950a3ac82d09c684f9f8d67aa4e1
         </Button>
       </form>
     </React.Fragment>

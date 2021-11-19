@@ -13,7 +13,7 @@ const AccountDisplay = props => {
     return (
         <li className="user-item">
           <Card className="user-item__content">
-            <Link to={`/${userInfo._id}/places`}>
+            <Link to={`/${userInfo._id}/products`}>
               <div className="user-item__image">
                 <Avatar image={`http://localhost:5000/${userInfo.image}`} alt={userInfo.name} />
               </div>

@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 
 import Users from './user/pages/Users';
-import NewPlace from './places/pages/NewPlace';
-import UserPlaces from './places/pages/UserPlaces';
-import UpdatePlace from './places/pages/UpdatePlace';
+import NewProduct from './products/pages/NewProduct';
+import UserProducts from './products/pages/UserProducts';
+import UpdateProduct from './products/pages/UpdateProduct';
 import AccountInfo from './user/pages/view/AccountInfo';
 import Auth from './user/pages/Auth';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
@@ -32,14 +32,14 @@ const App = () => {
         <Route path="/account/:userId">
           <AccountInfo />
         </Route>
-        <Route path="/:userId/places" exact>
-          <UserPlaces />
+        <Route path="/:userId/products" exact>
+          <UserProducts />
         </Route>
-        <Route path="/places/new" exact>
-          <NewPlace />
+        <Route path="/products/new" exact>
+          <NewProduct />
         </Route>
-        <Route path="/places/:placeId">
-          <UpdatePlace />
+        <Route path="/products/:productId">
+          <UpdateProduct />
         </Route>
         <Route path="/products/new" exact>
           <NewProduct />
@@ -56,8 +56,8 @@ const App = () => {
         <Route path="/account/:userId">
           <AccountInfo />
         </Route>
-        <Route path="/:userId/places" exact>
-          <UserPlaces />
+        <Route path="/:userId/products" exact>
+          <UserProducts />
         </Route>
         <Route path="/auth">
           <Auth />
