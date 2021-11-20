@@ -61,9 +61,34 @@ const getProductsByUserId = async (req, res, next) => {
       )
     });
   };
+
+  const getProducts = async (req, res, next) => {
+  
+    // let products;
+    let products;
+    try {
+      products = await Product.find();
+    } catch (err) {
+      const error = new HttpError(
+        'Fetching products failed, please try again later.',
+        500
+      );
+      return next(error);
+    }
+  
+    // if (!products || products.length === 0) {
+    if (!products || products.length === 0) {
+      return next(
+        new HttpError('Could not get all products.', 404)
+      );
+    }
+  
+    res.json({ products: products.map(product => product.toObject({ getters: true })) });
+  };
   
 
   const createProduct = async (req, res, next) => {
+    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return next(
@@ -79,6 +104,8 @@ const getProductsByUserId = async (req, res, next) => {
     // } catch (error) {
     //   return next(error);
     // }
+
+    
   
     const createdProduct = new Product({
         name, 
@@ -87,8 +114,9 @@ const getProductsByUserId = async (req, res, next) => {
         height,
         description,
         storage_location,
+        image: req.file.path,
 
-        reator: req.userData.userId
+        creator: req.userData.userId
     });
   
     let user;
@@ -106,8 +134,6 @@ const getProductsByUserId = async (req, res, next) => {
       const error = new HttpError('Could not find user for provided id.', 404);
       return next(error);
     }
-  
-    console.log(user);
   
     try {
       const sess = await mongoose.startSession();
@@ -134,7 +160,7 @@ const getProductsByUserId = async (req, res, next) => {
       );
     }
   
-    const { name, description, storage_location } = req.body;
+    const { name, description, storage_location, length, width, height } = req.body;
     const productId = req.params.pid;
   
     let product;
@@ -155,6 +181,13 @@ const getProductsByUserId = async (req, res, next) => {
   
     product.name = name;
     product.description = description;
+    product.storage_location = storage_location;
+
+    if(length && width && height) {
+      product.length = length;
+      product.width = width;
+      product.height = height;
+    }
   
     try {
       await product.save();
@@ -175,6 +208,7 @@ const getProductsByUserId = async (req, res, next) => {
     let product;
     try {
         product = await Product.findById(productId).populate('creator');
+        
     } catch (err) {
       const error = new HttpError(
         'Something went wrong, could not delete product.',
@@ -182,7 +216,7 @@ const getProductsByUserId = async (req, res, next) => {
       );
       return next(error);
     }
-  
+
     if (!product) {
       const error = new HttpError('Could not find product for this id.', 404);
       return next(error);
@@ -202,7 +236,7 @@ const getProductsByUserId = async (req, res, next) => {
       const sess = await mongoose.startSession();
       sess.startTransaction();
       await product.remove({ session: sess });
-      product.creator.product.pull(product);
+      product.creator.products.pull(product);
       await product.creator.save({ session: sess });
       await sess.commitTransaction();
     } catch (err) {
@@ -226,3 +260,4 @@ exports.getProductsByUserId = getProductsByUserId;
 exports.createProduct = createProduct;
 exports.updateProduct = updateProduct;
 exports.deleteProduct = deleteProduct;
+exports.getProducts = getProducts;

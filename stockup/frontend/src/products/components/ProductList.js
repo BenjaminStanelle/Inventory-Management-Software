@@ -23,12 +23,14 @@ const ProductList = props => {
         <ProductItem
           key={product.id}
           id={product.id}
+          name={product.name}
           image={product.image}
-          title={product.title}
           description={product.description}
-          address={product.address}
+          storage_location={product.storage_location}
+          length={product.length}
+          width={product.width}
+          height={product.height}
           creatorId={product.creator}
-          coordinates={product.location}
           onDelete={props.onDeleteProduct}
         />
       ))}

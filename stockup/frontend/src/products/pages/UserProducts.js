@@ -12,19 +12,29 @@ const UserProducts = () => {
 
   const userId = useParams().userId;
 
+
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const responseData = await sendRequest(
-          `http://localhost:5000/api/products/user/${userId}`
-        );
+          let responseData;
+
+          if(userId) {
+            responseData = await sendRequest(
+              `http://localhost:5000/api/products/user/${userId}`);
+          } else {
+            responseData = await sendRequest(
+              `http://localhost:5000/api/products/`);
+          }
         setLoadedProducts(responseData.products);
       } catch (err) {}
     };
     fetchProducts();
   }, [sendRequest, userId]);
 
-  const productDeletedHandler = deletedProductId => {
+  let productDeletedHandler;
+
+  productDeletedHandler = deletedProductId => {
     setLoadedProducts(prevProducts =>
       prevProducts.filter(product => product.id !== deletedProductId)
     );

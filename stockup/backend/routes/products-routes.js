@@ -7,6 +7,8 @@ const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
+router.get('/', productsControllers.getProducts);
+
 router.get('/:pid', productsControllers.getProductById);
 
 router.get('/user/:uid', productsControllers.getProductsByUserId);
@@ -15,7 +17,7 @@ router.use(checkAuth);
 
 router.post(
   '/',
-  //fileUpload.single('image'),
+  fileUpload.single('image'),
   [
     check('name')
       .not()

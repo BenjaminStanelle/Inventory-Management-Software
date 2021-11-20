@@ -24,13 +24,17 @@ const UpdateProduct = () => {
 
   const [formState, inputHandler, setFormData] = useForm(
     {
-      title: {
+      name: {
         value: '',
         isValid: false
       },
       description: {
         value: '',
         isValid: false
+      },
+      storage_location: {
+        value: '',
+        isValid: true
       }
     },
     false
@@ -45,12 +49,16 @@ const UpdateProduct = () => {
         setLoadedProduct(responseData.product);
         setFormData(
           {
-            title: {
-              value: responseData.product.title,
+            name: {
+              value: responseData.product.name,
               isValid: true
             },
             description: {
               value: responseData.product.description,
+              isValid: true
+            },
+            storage_location: {
+              value: responseData.product.storage_location,
               isValid: true
             }
           },
@@ -68,8 +76,9 @@ const UpdateProduct = () => {
         `http://localhost:5000/api/products/${productId}`,
         'PATCH',
         JSON.stringify({
-          title: formState.inputs.title.value,
-          description: formState.inputs.description.value
+          name: formState.inputs.name.value,
+          description: formState.inputs.description.value,
+          storage_location: formState.inputs.storage_location.value
         }),
         {
           'Content-Type': 'application/json',
@@ -104,14 +113,14 @@ const UpdateProduct = () => {
       {!isLoading && loadedProduct && (
         <form className="product-form" onSubmit={productUpdateSubmitHandler}>
           <Input
-            id="title"
+            id="name"
             element="input"
             type="text"
-            label="Title"
+            label="Name"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid title."
+            errorText="Please enter a valid name."
             onInput={inputHandler}
-            initialValue={loadedProduct.title}
+            initialValue={loadedProduct.name}
             initialValid={true}
           />
           <Input
@@ -122,6 +131,16 @@ const UpdateProduct = () => {
             errorText="Please enter a valid description (min. 5 characters)."
             onInput={inputHandler}
             initialValue={loadedProduct.description}
+            initialValid={true}
+          />
+          <Input
+            id="storage_location"
+            element="textarea"
+            label="Storage Location"
+            validators={[VALIDATOR_MINLENGTH(5)]}
+            errorText="Please enter a valid storage location (min. 5 characters)."
+            onInput={inputHandler}
+            initialValue={loadedProduct.storage_location}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>

@@ -13,12 +13,7 @@ import './ProductItem.css';
 const ProductItem = props => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
-  const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-
-  const openMapHandler = () => setShowMap(true);
-
-  const closeMapHandler = () => setShowMap(false);
 
   const showDeleteWarningHandler = () => {
     setShowConfirmModal(true);
@@ -42,22 +37,10 @@ const ProductItem = props => {
       props.onDelete(props.id);
     } catch (err) {}
   };
-
+  console.log(props);
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <Modal
-        show={showMap}
-        onCancel={closeMapHandler}
-        header={props.address}
-        contentClass="product-item__modal-content"
-        footerClass="product-item__modal-actions"
-        footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
-      >
-        <div className="map-container">
-          <Map center={props.coordinates} zoom={16} />
-        </div>
-      </Modal>
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
@@ -89,14 +72,15 @@ const ProductItem = props => {
             />
           </div>
           <div className="product-item__info">
-            <h2>{props.title}</h2>
-            <h3>{props.address}</h3>
+            <h2>{props.name}</h2>
+            {
+              props.width && props.length && props.height && 
+              <p>{'Dimensions: (' + props.width + ', ' + props.length + ', ' + props.height + ')'}</p>
+            }
             <p>{props.description}</p>
+            <p>{props.storage_location}</p>
           </div>
           <div className="product-item__actions">
-            <Button inverse onClick={openMapHandler}>
-              VIEW ON MAP
-            </Button>
             {auth.userId === props.creatorId && (
               <Button to={`/products/${props.id}`}>EDIT</Button>
             )}

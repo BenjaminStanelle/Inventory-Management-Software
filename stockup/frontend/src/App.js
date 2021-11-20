@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/" exact>
           <Users />
         </Route>
-        <Route path="/account/:userId">
+        <Route path="/:userId/account">
           <AccountInfo />
         </Route>
         <Route path="/:userId/products" exact>
@@ -41,6 +41,9 @@ const App = () => {
         <Route path="/products/:productId">
           <UpdateProduct />
         </Route>
+        <Route path="/products">
+          <UserProducts />
+        </Route>
         <Redirect to="/" />
       </Switch>
     );
@@ -50,10 +53,13 @@ const App = () => {
         <Route path="/" exact>
           <Users />
         </Route>
-        <Route path="/account/:userId">
+        <Route path="/:userId/account">
           <AccountInfo />
         </Route>
         <Route path="/:userId/products" exact>
+          <UserProducts />
+        </Route>
+        <Route path="/products">
           <UserProducts />
         </Route>
         <Route path="/auth">

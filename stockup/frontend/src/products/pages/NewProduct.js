@@ -5,6 +5,7 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH
@@ -30,7 +31,10 @@ const NewProduct = () => {
         value: '',
         isValid: false
       },
-
+      image: {
+        value: null,
+        isValid: false
+      }
 
     },
     false
@@ -41,6 +45,7 @@ const NewProduct = () => {
   const placeSubmitHandler = async event => {
     event.preventDefault();
     try {
+      console.log(formState.inputs.image.value);
       const formData = new FormData();
       formData.append('name', formState.inputs.name.value);
       formData.append('length', formState.inputs.length.value);
@@ -48,13 +53,14 @@ const NewProduct = () => {
       formData.append('height', formState.inputs.height.value);
       formData.append('description', formState.inputs.description.value);
       formData.append('storage_location', formState.inputs.storage_location.value);
+      formData.append('image', formState.inputs.image.value);
 
   
-      await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
+      await sendRequest('http://localhost:5000/api/products', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
       history.push('/');
-    } catch (err) {}
+    } catch (err) {console.log(err);}
   };
 
   return (
@@ -70,6 +76,11 @@ const NewProduct = () => {
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid name."
           onInput={inputHandler}
+        />
+        <ImageUpload
+          id="image"
+          onInput={inputHandler}
+          errorText="Please provide an image."
         />
         <Input
           id="length"
