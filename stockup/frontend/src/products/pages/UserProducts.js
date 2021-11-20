@@ -20,21 +20,17 @@ const UserProducts = () => {
           let responseData;
 
           if(userId) {
-            responseData = await sendRequest(
-              `http://localhost:5000/api/products/user/${userId}`);
+            responseData = await sendRequest(`http://localhost:5000/api/products/user/${userId}`);
           } else {
-            responseData = await sendRequest(
-              `http://localhost:5000/api/products/`);
+            responseData = await sendRequest('http://localhost:5000/api/products/all');
           }
         setLoadedProducts(responseData.products);
-      } catch (err) {}
+      } catch (err) {console.log(err);}
     };
     fetchProducts();
   }, [sendRequest, userId]);
 
-  let productDeletedHandler;
-
-  productDeletedHandler = deletedProductId => {
+  const productDeletedHandler = deletedProductId => {
     setLoadedProducts(prevProducts =>
       prevProducts.filter(product => product.id !== deletedProductId)
     );

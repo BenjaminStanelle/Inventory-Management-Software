@@ -66,8 +66,9 @@ const getProductsByUserId = async (req, res, next) => {
   
     // let products;
     let products;
+
     try {
-      products = await Product.find();
+      products = await Product.find({});
     } catch (err) {
       const error = new HttpError(
         'Fetching products failed, please try again later.',
@@ -78,8 +79,9 @@ const getProductsByUserId = async (req, res, next) => {
   
     // if (!products || products.length === 0) {
     if (!products || products.length === 0) {
+
       return next(
-        new HttpError('Could not get all products.', 404)
+        new HttpError('There are no products.', 404)
       );
     }
   

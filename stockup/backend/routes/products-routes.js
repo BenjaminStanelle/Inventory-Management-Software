@@ -7,7 +7,7 @@ const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
-router.get('/', productsControllers.getProducts);
+router.get('/all', productsControllers.getProducts);
 
 router.get('/:pid', productsControllers.getProductById);
 

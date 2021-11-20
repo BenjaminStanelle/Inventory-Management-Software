@@ -38,11 +38,11 @@ const App = () => {
         <Route path="/products/new" exact>
           <NewProduct />
         </Route>
+        <Route path="/products/all" exact>
+          <UserProducts />
+        </Route>
         <Route path="/products/:productId">
           <UpdateProduct />
-        </Route>
-        <Route path="/products">
-          <UserProducts />
         </Route>
         <Redirect to="/" />
       </Switch>
@@ -59,7 +59,7 @@ const App = () => {
         <Route path="/:userId/products" exact>
           <UserProducts />
         </Route>
-        <Route path="/products">
+        <Route path="/products/all">
           <UserProducts />
         </Route>
         <Route path="/auth">

@@ -11,7 +11,7 @@ const ProductList = props => {
       <div className="product-list center">
         <Card>
           <h2>No products found. Maybe create one?</h2>
-          <Button to="/products/new">Share Product</Button>
+          <Button to="/products/new">Add Product</Button>
         </Card>
       </div>
     );

@@ -3,7 +3,6 @@ import React, { useState, useContext } from 'react';
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
-import Map from '../../shared/components/UIElements/Map';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from '../../shared/context/auth-context';
@@ -37,7 +36,7 @@ const ProductItem = props => {
       props.onDelete(props.id);
     } catch (err) {}
   };
-  console.log(props);
+
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -73,12 +72,12 @@ const ProductItem = props => {
           </div>
           <div className="product-item__info">
             <h2>{props.name}</h2>
+            <h3>{props.description}</h3>
             {
               props.width && props.length && props.height && 
               <p>{'Dimensions: (' + props.width + ', ' + props.length + ', ' + props.height + ')'}</p>
             }
-            <p>{props.description}</p>
-            <p>{props.storage_location}</p>
+            <p>{'Location: ' + props.storage_location}</p>
           </div>
           <div className="product-item__actions">
             {auth.userId === props.creatorId && (
@@ -89,6 +88,9 @@ const ProductItem = props => {
               <Button danger onClick={showDeleteWarningHandler}>
                 DELETE
               </Button>
+            )}
+            {auth.userId !== props.creatorId && (
+              <p>You do not own this item.</p>
             )}
           </div>
         </Card>
