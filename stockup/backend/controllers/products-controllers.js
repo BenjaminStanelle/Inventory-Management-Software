@@ -98,7 +98,7 @@ const getProductsByUserId = async (req, res, next) => {
       );
     }
   
-    const { name, length, width, height, description, storage_location } = req.body;
+    const { name, length, width, height, description, storage_location,count } = req.body;
   
     // let coordinates;
     // try {
@@ -116,6 +116,7 @@ const getProductsByUserId = async (req, res, next) => {
         height,
         description,
         storage_location,
+        count,
         image: req.file.path,
 
         creator: req.userData.userId
@@ -162,7 +163,7 @@ const getProductsByUserId = async (req, res, next) => {
       );
     }
   
-    const { name, description, storage_location, length, width, height } = req.body;
+    const { name, description, storage_location, count, length, width, height } = req.body;
     const productId = req.params.pid;
   
     let product;
@@ -184,6 +185,7 @@ const getProductsByUserId = async (req, res, next) => {
     product.name = name;
     product.description = description;
     product.storage_location = storage_location;
+    product.count = count;
 
     if(length && width && height) {
       product.length = length;

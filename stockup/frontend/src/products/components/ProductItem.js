@@ -78,6 +78,7 @@ const ProductItem = props => {
               <p>{'Dimensions: (' + props.width + ', ' + props.length + ', ' + props.height + ')'}</p>
             }
             <p>{'Location: ' + props.storage_location}</p>
+            <p>{'Count: ' + props.count} + {props.count === 1 ? 'Item Remaining' : 'Items Remaining'} {props.count < 10 ? '[Low on Stock]}' : ''}</p>
           </div>
           <div className="product-item__actions">
             {auth.userId === props.creatorId && (

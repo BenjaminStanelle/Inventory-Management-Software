@@ -13,7 +13,6 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-
 const NewProduct = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -28,6 +27,10 @@ const NewProduct = () => {
         isValid: false
       },
       storage_location: {
+        value: '',
+        isValid: false
+      },
+      count: {
         value: '',
         isValid: false
       },
@@ -53,6 +56,7 @@ const NewProduct = () => {
       formData.append('height', formState.inputs.height.value);
       formData.append('description', formState.inputs.description.value);
       formData.append('storage_location', formState.inputs.storage_location.value);
+      formData.append('count', formState.inputs.count.value);
       formData.append('image', formState.inputs.image.value);
 
   
@@ -66,7 +70,7 @@ const NewProduct = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <form className="place-form" onSubmit={placeSubmitHandler}>
+      <form className="product-form" onSubmit={placeSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
         <Input
           id="name"
@@ -123,6 +127,15 @@ const NewProduct = () => {
           label="Storage location"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid location."
+          onInput={inputHandler}
+        />
+        <Input
+          id="count"
+          element="input"
+          type="number"
+          label="Count"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid number."
           onInput={inputHandler}
         />
 

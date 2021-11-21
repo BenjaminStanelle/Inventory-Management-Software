@@ -35,6 +35,10 @@ const UpdateProduct = () => {
       storage_location: {
         value: '',
         isValid: true
+      },
+      count: {
+        value: '',
+        isValid: true
       }
     },
     false
@@ -60,6 +64,10 @@ const UpdateProduct = () => {
             storage_location: {
               value: responseData.product.storage_location,
               isValid: true
+            },
+            count: {
+              value: responseData.product.count,
+              isValid: true
             }
           },
           true
@@ -78,7 +86,8 @@ const UpdateProduct = () => {
         JSON.stringify({
           name: formState.inputs.name.value,
           description: formState.inputs.description.value,
-          storage_location: formState.inputs.storage_location.value
+          storage_location: formState.inputs.storage_location.value,
+          count: formState.inputs.count.value
         }),
         {
           'Content-Type': 'application/json',
@@ -141,6 +150,16 @@ const UpdateProduct = () => {
             errorText="Please enter a valid storage location (min. 5 characters)."
             onInput={inputHandler}
             initialValue={loadedProduct.storage_location}
+            initialValid={true}
+          />
+          <Input
+            id="count"
+            element="input"
+            label="Count"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid count for the given item."
+            onInput={inputHandler}
+            initialValue={loadedProduct.count}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>
