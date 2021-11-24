@@ -22,7 +22,6 @@ const getUsers = async (req, res, next) => {
 const getUserInfo = async (req, res, next) => {
   const userId = req.params.uid;
 
-  let users;
   try {
     user = await User.findById(userId);
   } catch (err) {
@@ -179,7 +178,105 @@ const login = async (req, res, next) => {
   });
 };
 
+const changePassword = async (req, res, next) => {
+  const { oldpassword, newpassword, newpasswordcopy } = req.body;
+
+  if(newpassword != newpasswordcopy) {
+    const error = new HttpError(
+      'New password entries do not match. Try again.',
+      500
+    );
+    return next(error);
+  }
+
+  const userId = req.params.uid;
+
+  let existingUser;
+
+  try {
+    existingUser = await User.findById(userId);
+  } catch (err) {
+    const error = new HttpError(
+      'Could not find user. Maybe try creatin an account?',
+      500
+    );
+    return next(error);
+  }
+
+  if (!existingUser) {
+    const error = new HttpError(
+      'Could not find user, something went wrong.',
+      403
+    );
+    return next(error);
+  }
+
+  let isValidPassword = false;
+  try {
+    isValidPassword = await bcrypt.compare(oldpassword, existingUser.password);
+  } catch (err) {
+    const error = new HttpError(
+      'Could not change your password, please check your credentials and try again.',
+      500
+    );
+    return next(error);
+  }
+
+  if (!isValidPassword) {
+    const error = new HttpError(
+      'Invalid credentials, could not change password.',
+      403
+    );
+    return next(error);
+  }
+
+  let hashedPassword;
+  try {
+    hashedPassword = await bcrypt.hash(newpassword, 12);
+  } catch (err) {
+    const error = new HttpError(
+      'Could not create user, please try again.',
+      500
+    );
+    return next(error);
+  }
+
+  existingUser.password = hashedPassword;
+
+  try {
+    await existingUser.save();
+  } catch (err) {
+    const error = new HttpError(
+      'Changing password failed, please try again later.',
+      500
+    );
+    return next(error);
+  }
+
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: existingUser.id, email: existingUser.email },
+      'supersecret_dont_share',
+      { expiresIn: '1h' }
+    );
+  } catch (err) {
+    const error = new HttpError(
+      'Logging in failed, please try again later.',
+      500
+    );
+    return next(error);
+  }
+
+  res.json({
+    userId: existingUser.id,
+    email: existingUser.email,
+    token: token
+  });
+};
+
 exports.getUsers = getUsers;
 exports.getUserInfo = getUserInfo;
 exports.signup = signup;
 exports.login = login;
+exports.changePassword = changePassword;

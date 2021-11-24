@@ -24,11 +24,12 @@ const AccountDisplay = props => {
               </div>
             </Link>
           </Card>
-          <Card className="user-item__none">
-            <div className="user-item__image">
-              <Avatar image={`http://localhost:5000/uploads/images/none.png`} alt={'None'} />
-            </div>
-            <h2>No Subscriptions Found.</h2>
+          <Card className="user-item__content">
+            <Link to={`/account/password/`}>
+              <div className="user-item__password">
+                <h2>Change Password</h2>
+              </div>
+            </Link>
           </Card>
         </li>
       );

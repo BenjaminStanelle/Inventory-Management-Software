@@ -28,4 +28,13 @@ router.post(
 
 router.post('/login', usersController.login);
 
+router.patch('/password/:uid',
+[
+  check('oldpassword').isLength({ min: 6 }),
+  check('newpassword').isLength({ min: 6 }),
+  check('newpasswordcopy').isLength({ min: 6 }),
+],
+
+usersController.changePassword);
+
 module.exports = router;

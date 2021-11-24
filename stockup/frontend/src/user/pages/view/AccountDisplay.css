@@ -1,5 +1,5 @@
 .user-item {
-    margin: 1rem;
+    margin: 5rem;
     width: calc(45% - 2rem);
     min-width: 17.5rem;
   }
@@ -15,27 +15,30 @@
     background: #292929;
   }
   
+  .user-item__password a:hover,
   .user-item a:hover,
   .user-item a:active {
     background: #ffd900;
   }
   
   .user-item__content {
-    padding: 0;
+    padding: 5;
   }
 
-  .user-item__none {
-    margin-top: 30px;
-    padding: 10;
+  .user-item__password {
+    padding: 1;
+  }
+
+  .user-item__password {
+    margin-top: 20px;
+    padding: 30;
     color: white;
-    background: #333;
   }
 
-  .user-item__none h2 {
+  .user-item__password h2 {
     font-size: 1.5rem;
     margin: 0 0 0.5rem 0;
     font-weight: normal;
-    color: #f00;
   }
   
   .user-item__image {
@@ -50,12 +53,20 @@
     font-weight: normal;
     color: #ffd900;
   }
+
+  .user-item__password h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: normal;
+    color: #fff;
+  }
   
   .user-item:hover h2,
   .user-item:active h2,
   .user-item:hover h3,
   .user-item:active h3 {
     color: #292929;
+    margin: 0 0 0.5rem
   }
   
   .user-item__info h3 {

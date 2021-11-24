@@ -11,6 +11,7 @@ import NewProduct from './products/pages/NewProduct';
 import UserProducts from './products/pages/UserProducts';
 import UpdateProduct from './products/pages/UpdateProduct';
 import AccountInfo from './user/pages/view/AccountInfo';
+import ChangePassword from './user/pages/ChangePassword';
 import Auth from './user/pages/Auth';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import { AuthContext } from './shared/context/auth-context';
@@ -31,6 +32,9 @@ const App = () => {
         </Route>
         <Route path="/:userId/account">
           <AccountInfo />
+        </Route>
+        <Route path="/account/password" exact>
+          <ChangePassword />
         </Route>
         <Route path="/:userId/products" exact>
           <UserProducts />
