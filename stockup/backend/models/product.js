@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
   name: { type: String, required: true },
-  length: { type: String, required: true },
-  width: { type: String, required: true },
-  height: { type: String, required: true },
+  length: { type: Number, required: true },
+  width: { type: Number, required: true },
+  height: { type: Number, required: true },
+  count: { type: Number, required: true },
   description: { type: String, required: true },
   storage_location: { type: String, required: true },
   image: { type: String, required: true },

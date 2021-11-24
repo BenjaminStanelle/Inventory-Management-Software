@@ -156,6 +156,7 @@ const UpdateProduct = () => {
             id="count"
             element="input"
             label="Count"
+            type="number"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid count for the given item."
             onInput={inputHandler}

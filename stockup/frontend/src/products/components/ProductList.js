@@ -31,6 +31,7 @@ const ProductList = props => {
           width={product.width}
           height={product.height}
           creatorId={product.creator}
+          count={product.count}
           onDelete={props.onDeleteProduct}
         />
       ))}
