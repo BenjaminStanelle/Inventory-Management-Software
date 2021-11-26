@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import Card from '../../shared/components/UIElements/Card';
@@ -14,14 +13,12 @@ import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import './ProductForm.css';
-
 const UpdateProduct = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedProduct, setLoadedProduct] = useState();
   const productId = useParams().productId;
   const history = useHistory();
-
   const [formState, inputHandler, setFormData] = useForm(
     {
       name: {
@@ -43,7 +40,6 @@ const UpdateProduct = () => {
     },
     false
   );
-
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -76,7 +72,6 @@ const UpdateProduct = () => {
     };
     fetchProduct();
   }, [sendRequest, productId, setFormData]);
-
   const productUpdateSubmitHandler = async event => {
     event.preventDefault();
     try {
@@ -97,7 +92,6 @@ const UpdateProduct = () => {
       history.push('/' + auth.userId + '/products');
     } catch (err) {}
   };
-
   if (isLoading) {
     return (
       <div className="center">
@@ -105,7 +99,6 @@ const UpdateProduct = () => {
       </div>
     );
   }
-
   if (!loadedProduct && !error) {
     return (
       <div className="center">
@@ -115,7 +108,6 @@ const UpdateProduct = () => {
       </div>
     );
   }
-
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -156,6 +148,7 @@ const UpdateProduct = () => {
             id="count"
             element="input"
             label="Count"
+            type="number"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid count for the given item."
             onInput={inputHandler}
@@ -170,5 +163,4 @@ const UpdateProduct = () => {
     </React.Fragment>
   );
 };
-
 export default UpdateProduct;

@@ -1,13 +1,10 @@
 const fs = require('fs');
-
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
-
 const HttpError = require('../models/http-error');
 const Product = require('../models/product');
 const User = require('../models/user');
 const product = require('../models/product');
-
 const getProductById = async (req, res, next) => {
     const productId = req.params.pid;
   
@@ -32,7 +29,6 @@ const getProductById = async (req, res, next) => {
   
     res.json({ product: product.toObject({ getters: true }) });
   };
-
 const getProductsByUserId = async (req, res, next) => {
     const userId = req.params.uid;
   
@@ -61,12 +57,10 @@ const getProductsByUserId = async (req, res, next) => {
       )
     });
   };
-
   const getProducts = async (req, res, next) => {
   
     // let products;
     let products;
-
     try {
       products = await Product.find({});
     } catch (err) {
@@ -79,7 +73,6 @@ const getProductsByUserId = async (req, res, next) => {
   
     // if (!products || products.length === 0) {
     if (!products || products.length === 0) {
-
       return next(
         new HttpError('There are no products.', 404)
       );
@@ -88,7 +81,6 @@ const getProductsByUserId = async (req, res, next) => {
     res.json({ products: products.map(product => product.toObject({ getters: true })) });
   };
   
-
   const createProduct = async (req, res, next) => {
     
     const errors = validationResult(req);
@@ -107,8 +99,20 @@ const getProductsByUserId = async (req, res, next) => {
     //   return next(error);
     // }
 
-    
-  
+    if(length <= 0 || width <= 0 || height <= 0) {
+      return next(
+        new HttpError('Invalid dimensions passed, cannot be less than 1.', 422)
+      );
+    }
+
+    if(count <= 0) {
+      return next(
+        new HttpError('Invalid value for count passed, cannot be less than 1.', 422)
+      );
+    }
+
+
+
     const createdProduct = new Product({
         name, 
         length, 
@@ -118,7 +122,6 @@ const getProductsByUserId = async (req, res, next) => {
         storage_location,
         count,
         image: req.file.path,
-
         creator: req.userData.userId
     });
   
@@ -181,13 +184,26 @@ const getProductsByUserId = async (req, res, next) => {
       const error = new HttpError('You are not allowed to edit this product.', 401);
       return next(error);
     }
-  
+
+    if(count <= 0) {
+      return next(
+        new HttpError('Invalid value for count passed, cannot be less than 1.', 422)
+      );
+    }
+
     product.name = name;
     product.description = description;
     product.storage_location = storage_location;
     product.count = count;
 
     if(length && width && height) {
+
+      if(length <= 0 || width <= 0 || height <= 0) {
+        return next(
+          new HttpError('Invalid dimensions passed, cannot be less than 1.', 422)
+        );
+      }
+
       product.length = length;
       product.width = width;
       product.height = height;
@@ -205,7 +221,6 @@ const getProductsByUserId = async (req, res, next) => {
   
     res.status(200).json({ product: product.toObject({ getters: true }) });
   };
-
   const deleteProduct = async (req, res, next) => {
     const productId = req.params.pid;
   
@@ -220,7 +235,6 @@ const getProductsByUserId = async (req, res, next) => {
       );
       return next(error);
     }
-
     if (!product) {
       const error = new HttpError('Could not find product for this id.', 404);
       return next(error);
