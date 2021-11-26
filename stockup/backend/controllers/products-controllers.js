@@ -107,18 +107,6 @@ const getProductsByUserId = async (req, res, next) => {
     //   return next(error);
     // }
 
-    if(length <= 0 || width <= 0 || height <= 0) {
-      return next(
-        new HttpError('Invalid dimensions passed, cannot be less than 1.', 422)
-      );
-    }
-
-    if(count <= 0) {
-      return next(
-        new HttpError('Invalid value for count passed, cannot be less than 1.', 422)
-      );
-    }
-
     
   
     const createdProduct = new Product({
@@ -193,12 +181,6 @@ const getProductsByUserId = async (req, res, next) => {
       const error = new HttpError('You are not allowed to edit this product.', 401);
       return next(error);
     }
-
-    if(count <= 0) {
-      return next(
-        new HttpError('Invalid value for count passed, cannot be less than 1.', 422)
-      );
-    }
   
     product.name = name;
     product.description = description;
@@ -206,13 +188,6 @@ const getProductsByUserId = async (req, res, next) => {
     product.count = count;
 
     if(length && width && height) {
-
-      if(length <= 0 || width <= 0 || height <= 0) {
-        return next(
-          new HttpError('Invalid dimensions passed, cannot be less than 1.', 422)
-        );
-      }
-
       product.length = length;
       product.width = width;
       product.height = height;
