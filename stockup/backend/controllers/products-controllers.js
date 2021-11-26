@@ -12,6 +12,7 @@ const getProductById = async (req, res, next) => {
     try {
         product = await Product.findById(productId);
     } catch (err) {
+      console.log(err); 
       const error = new HttpError(
         'Something went wrong, could not find a product.',
         500
@@ -64,6 +65,7 @@ const getProductsByUserId = async (req, res, next) => {
     try {
       products = await Product.find({});
     } catch (err) {
+      console.log(err); 
       const error = new HttpError(
         'Fetching products failed, please try again later.',
         500
@@ -129,6 +131,7 @@ const getProductsByUserId = async (req, res, next) => {
     try {
       user = await User.findById(req.userData.userId);
     } catch (err) {
+      console.log(err); 
       const error = new HttpError(
         'Creating Product failed, please try again.',
         500
@@ -149,6 +152,7 @@ const getProductsByUserId = async (req, res, next) => {
       await user.save({ session: sess });
       await sess.commitTransaction();
     } catch (err) {
+      console.log(err); 
       const error = new HttpError(
         'Creating Product failed, please try again.',
         500
@@ -173,6 +177,7 @@ const getProductsByUserId = async (req, res, next) => {
     try {
         product = await Product.findById(productId);
     } catch (err) {
+      console.log(err); 
       const error = new HttpError(
         'Something went wrong, could not update product.',
         500
@@ -212,6 +217,7 @@ const getProductsByUserId = async (req, res, next) => {
     try {
       await product.save();
     } catch (err) {
+      console.log(err)
       const error = new HttpError(
         'Something went wrong, could not update product.',
         500
@@ -258,6 +264,7 @@ const getProductsByUserId = async (req, res, next) => {
       await product.creator.save({ session: sess });
       await sess.commitTransaction();
     } catch (err) {
+      console.log(err)
       const error = new HttpError(
         'Something went wrong, could not delete product.',
         500
