@@ -28,6 +28,7 @@ export const useAuth = () => {
     setTokenExpirationDate(null);
     setUserId(null);
     localStorage.removeItem('userData');
+    window.location.href=`/`; 
   }, []);
 
   useEffect(() => {

@@ -21,14 +21,19 @@ const AccountDisplay = props => {
                 <h2>{userInfo.name}</h2>
                 <h2>{userInfo.email}</h2>
                 <h2>{userInfo.pnumber}</h2>
+
+                {userInfo.products.length > 0 && 
+                <h2>{userInfo.products.length} {userInfo.products.length > 1 ?  ' products' : ' product'}</h2>}
+
+                {userInfo.products.length === 0 && 
+                <h2>No products added.</h2>}
+
               </div>
             </Link>
           </Card>
-          <Card className="user-item__content">
+          <Card className="user-item__password">
             <Link to={`/account/password/`}>
-              <div className="user-item__password">
                 <h2>Change Password</h2>
-              </div>
             </Link>
           </Card>
         </div>
