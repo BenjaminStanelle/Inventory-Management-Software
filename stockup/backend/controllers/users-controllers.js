@@ -189,6 +189,14 @@ const changePassword = async (req, res, next) => {
     return next(error);
   }
 
+  if(oldpassword === newpassword) {
+    const error = new HttpError(
+      'Cannot re-use old passwords. Try again.',
+      500
+    );
+    return next(error);
+  }
+
   const userId = req.params.uid;
 
   let existingUser;
