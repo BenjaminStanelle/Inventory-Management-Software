@@ -8,6 +8,8 @@ const productSchema = new Schema({
   width: { type: Number, required: true },
   height: { type: Number, required: true },
   count: { type: Number, required: true },
+  price: { type: Number, required: true },
+  vendorInfo: { type: String, required: true },
   description: { type: String, required: true },
   storage_location: { type: String, required: true },
   image: { type: String, required: true },

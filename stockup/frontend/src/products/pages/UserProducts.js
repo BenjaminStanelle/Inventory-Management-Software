@@ -21,9 +21,7 @@ const UserProducts = () => {
 
           if(userId) {
             responseData = await sendRequest(`http://localhost:5000/api/products/user/${userId}`);
-          } else {
-            responseData = await sendRequest('http://localhost:5000/api/products/all');
-          }
+          } 
         setLoadedProducts(responseData.products);
       } catch (err) {console.log(err);}
     };

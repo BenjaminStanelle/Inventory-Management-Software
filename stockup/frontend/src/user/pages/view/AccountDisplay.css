@@ -11,28 +11,28 @@
     height: 100%;
     text-decoration: none;
     padding: 1rem;
-    color: white;
-    background: #292929;
+    background: #4d4d4d;
   }
   
   .user-item__password a:hover,
   .user-item a:hover,
   .user-item a:active {
-    background: #ffd900;
+    background: #ffd700;
   }
   
   .user-item__content {
-    padding: 5;
+    padding: 0;
+    
   }
 
   .user-item__password {
-    padding: 1;
+    padding: 0;
   }
 
   .user-item__password {
     margin-top: 20px;
     padding: 30;
-    color: white;
+    color: #4d4d4d;
   }
 
   .user-item__password h2 {
@@ -51,21 +51,21 @@
     font-size: 1.5rem;
     margin: 0 0 0.5rem 0;
     font-weight: normal;
-    color: #ffd900;
+    color: #ffd700;
   }
 
   .user-item__password h2 {
     font-size: 1.5rem;
     margin: 0 0 0.5rem 0;
     font-weight: normal;
-    color: #fff;
+    color: #ffd700;
   }
   
   .user-item:hover h2,
   .user-item:active h2,
   .user-item:hover h3,
   .user-item:active h3 {
-    color: #292929;
+    color: #4d4d4d;
     margin: 0 0 0.5rem
   }
   

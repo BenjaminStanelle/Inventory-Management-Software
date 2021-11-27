@@ -181,7 +181,7 @@ const login = async (req, res, next) => {
 const changePassword = async (req, res, next) => {
   const { oldpassword, newpassword, newpasswordcopy } = req.body;
 
-  if(newpassword != newpasswordcopy) {
+  if(newpassword !== newpasswordcopy) {
     const error = new HttpError(
       'New password entries do not match. Try again.',
       500

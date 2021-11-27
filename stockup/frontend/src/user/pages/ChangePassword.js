@@ -110,7 +110,7 @@ const ChangePassword = () => {
               errorText="Please re-enter your new password."
               onInput={inputHandler}
             />
-            <Button type="submit" disabled={!formState.isValid || formState.newpasswordcopy != formState.newpassword}>
+            <Button type="submit" disabled={!formState.isValid || formState.newpasswordcopy !== formState.newpassword}>
                 Change Password
             </Button>
           </form>

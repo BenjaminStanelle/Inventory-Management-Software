@@ -11,7 +11,7 @@ const AccountDisplay = props => {
     const userInfo = props.userInfo;
 
     return (
-        <li className="user-item">
+        <div className="user-item">
           <Card className="user-item__content">
             <Link to={`/${userInfo._id}/products`}>
               <div className="user-item__image">
@@ -31,7 +31,7 @@ const AccountDisplay = props => {
               </div>
             </Link>
           </Card>
-        </li>
+        </div>
       );
 };
 

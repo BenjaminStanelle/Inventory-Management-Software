@@ -36,6 +36,14 @@ const UpdateProduct = () => {
       count: {
         value: '',
         isValid: true
+      },
+      price: {
+        value: '',
+        isValid: true
+      },
+      vendorInfo: {
+        value: '',
+        isValid: true
       }
     },
     false
@@ -64,6 +72,14 @@ const UpdateProduct = () => {
             count: {
               value: responseData.product.count,
               isValid: true
+            },
+            price: {
+              value: responseData.product.price,
+              isValid: true
+            },
+            vendorInfo: {
+              value: responseData.product.vendorInfo,
+              isValid: true
             }
           },
           true
@@ -82,7 +98,10 @@ const UpdateProduct = () => {
           name: formState.inputs.name.value,
           description: formState.inputs.description.value,
           storage_location: formState.inputs.storage_location.value,
-          count: formState.inputs.count.value
+          count: formState.inputs.count.value,
+          price: formState.inputs.price.value,
+          vendorInfo: formState.inputs.vendorInfo.value
+
         }),
         {
           'Content-Type': 'application/json',
@@ -153,6 +172,28 @@ const UpdateProduct = () => {
             errorText="Please enter a valid count for the given item."
             onInput={inputHandler}
             initialValue={loadedProduct.count}
+            initialValid={true}
+          />
+           <Input
+            id="price"
+            element="input"
+            label="Price"
+            type="number"
+            step="0.01"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid price for the given item."
+            onInput={inputHandler}
+            initialValue={loadedProduct.price}
+            initialValid={true}
+          />
+           <Input
+            id="vendorInfo"
+            element="textarea"
+            label="Vendor Information"
+            validators={[VALIDATOR_MINLENGTH(5)]}
+            errorText="Please enter a valid vendor information (min. 5 characters)."
+            onInput={inputHandler}
+            initialValue={loadedProduct.vendorInfo}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>

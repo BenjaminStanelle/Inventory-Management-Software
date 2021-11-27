@@ -29,6 +29,8 @@ const ProductList = props => {
           height={product.height}
           creatorId={product.creator}
           count={product.count}
+          price={product.price}
+          vendorInfo={product.vendorInfo}
           onDelete={props.onDeleteProduct}
         />
       ))}

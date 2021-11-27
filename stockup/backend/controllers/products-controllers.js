@@ -92,7 +92,7 @@ const getProductsByUserId = async (req, res, next) => {
       );
     }
   
-    const { name, length, width, height, description, storage_location,count } = req.body;
+    const { name, length, width, height, description, storage_location,count,price,vendorInfo } = req.body;
   
     // let coordinates;
     // try {
@@ -112,6 +112,12 @@ const getProductsByUserId = async (req, res, next) => {
         new HttpError('Invalid value for count passed, cannot be less than 1.', 422)
       );
     }
+    if(price <= 0) {
+      return next(
+        new HttpError('Invalid value for price passed, cannot be less than 1.', 422)
+      );
+    }
+  
 
 
 
@@ -123,6 +129,8 @@ const getProductsByUserId = async (req, res, next) => {
         description,
         storage_location,
         count,
+        price,
+        vendorInfo,
         image: req.file.path,
         creator: req.userData.userId
     });
@@ -170,7 +178,7 @@ const getProductsByUserId = async (req, res, next) => {
       );
     }
   
-    const { name, description, storage_location, count, length, width, height } = req.body;
+    const { name, description, storage_location, count, price, vendorInfo, length, width, height } = req.body;
     const productId = req.params.pid;
   
     let product;
@@ -195,11 +203,18 @@ const getProductsByUserId = async (req, res, next) => {
         new HttpError('Invalid value for count passed, cannot be less than 1.', 422)
       );
     }
+    if(price <= 0) {
+      return next(
+        new HttpError('Invalid value for price passed, cannot be less than 1.', 422)
+      );
+    }
 
     product.name = name;
     product.description = description;
     product.storage_location = storage_location;
     product.count = count;
+    product.price = price;
+    product.vendorInfo = vendorInfo;
 
     if(length && width && height) {
 

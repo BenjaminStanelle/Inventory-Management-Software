@@ -34,6 +34,14 @@ const NewProduct = () => {
         value: '',
         isValid: false
       },
+      price: {
+        value: '',
+        isValid: false
+      },
+      vendorInfo: {
+        value: '',
+        isValid: false
+      },
       image: {
         value: null,
         isValid: false
@@ -57,6 +65,8 @@ const NewProduct = () => {
       formData.append('description', formState.inputs.description.value);
       formData.append('storage_location', formState.inputs.storage_location.value);
       formData.append('count', formState.inputs.count.value);
+      formData.append('price', formState.inputs.price.value);
+      formData.append('vendorInfo', formState.inputs.vendorInfo.value);
       formData.append('image', formState.inputs.image.value);
 
   
@@ -138,7 +148,24 @@ const NewProduct = () => {
           errorText="Please enter a valid number."
           onInput={inputHandler}
         />
-
+        <Input
+          id="price"
+          element="input"
+          type="number"
+          step="0.01"
+          label="Price"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid number."
+          onInput={inputHandler}
+        />
+<Input
+          id="vendorInfo"
+          element="textarea"
+          label="Vendor Information"
+          validators={[VALIDATOR_MINLENGTH(5)]}
+          errorText="Please enter a valid description (at least 5 characters)."
+          onInput={inputHandler}
+        />
         <Button type="submit" disabled={!formState.isValid}>
           ADD PRODUCT
         </Button>
