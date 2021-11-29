@@ -19,18 +19,13 @@ const SuppliersProducts = () => {
       try {
           let responseData;
           responseData = await sendRequest('http://localhost:5000/api/suppliers/all');
-        setLoadedSuppliers(responseData.suppliers);
-        console.log(responseData)
+        setLoadedSuppliers(responseData.supplier);
       } catch (err) {console.log(err);}
     };
     fetchSuppliers();
   }, [sendRequest, userId]);
 
-  const supplierDeletedHandler = deletedSupplierId => {
-    setLoadedSuppliers(prevSuppliers =>
-      prevSuppliers.filter(supplier => supplier.id !== deletedSupplierId)
-    );
-  };
+
 
   return (
     <React.Fragment>
@@ -41,7 +36,7 @@ const SuppliersProducts = () => {
         </div>
       )}
       {!isLoading && loadedSuppliers && (
-        <SuppliersList items={loadedSuppliers} onDeleteSuppliers={supplierDeletedHandler} />
+        <SuppliersList items={loadedSuppliers} />
       )}
     </React.Fragment>
   );
