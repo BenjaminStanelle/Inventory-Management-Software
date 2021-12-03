@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../shared/context/auth-context';
-
+import logo from '../../images/Logo.png'
 import './DashBoard.css';
 
 const DashBoard = props => {
@@ -15,7 +15,7 @@ const DashBoard = props => {
       <div className="dashboard">
         <h2>{dashboardMessage}</h2>
         <img
-            src={`http://localhost:5000/uploads/images/ac636565-f655-4fe7-a45f-c77f758e9e5e.png`}
+            src={logo}
           />
       </div>
     </React.Fragment>
