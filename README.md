@@ -9,10 +9,16 @@ example in stock-up folder: npm install nodemon mongoose express
 navigate to client folder then go to the package.json file and npm install all the dependencies in order 1 by 1 while in the client directory in your terminal
 in addition to these ^^^^ depedencies install this is the same client directory: npm install --save-dev @testing-library/jest-dom
 
+Require application: MongoDB, NodeJS
 
 How to run:
-open stock-up folder in visual studios code
-Navigate to client folder and type in terminal:npm start
+Open stock-up folder in VS code
+Navigate to backend folder
+  npm install
+  npm start
+Navigate to front end folder 
+  npm install
+  npm start
 
 
 Connect to MongoDB:
